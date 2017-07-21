@@ -1,6 +1,7 @@
 import readlineSync from 'readline-sync';
 
 let count = 0;
+const random = (max, min = '0') => Math.floor(min + (Math.random() * ((max + 1) - min)));
 const getHead = (str) => {
   console.log(`Welcome to the Brain Games!\n${str}\n\n`);
 };
@@ -24,4 +25,12 @@ const getMessage = (msg, answer, corAnswer, callback, user) => {
   }
   return false;
 };
-export { getHead, getUser, getMessage };
+const getResult = (answer, corAnswer, callback, user) => {
+  if (answer === corAnswer) {
+    getMessage('true', answer, corAnswer, callback, user);
+  } else {
+    getMessage('fail', answer, corAnswer, callback, user);
+  }
+};
+
+export { random, getHead, getUser, getMessage, getResult };

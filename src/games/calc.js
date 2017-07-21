@@ -1,6 +1,6 @@
 import readlineSync from 'readline-sync';
 import { cons, car, cdr } from 'hexlet-pairs';
-import { getHead, getUser, getMessage } from '../';
+import { random, getHead, getUser, getResult } from '../';
 
 export default () => {
   getHead('What is the result of the expression?');
@@ -9,11 +9,11 @@ export default () => {
   const askQuestion = () => {
     const maxNumb = 50;
     const arr = ['+', '-', '*'];
-    const firstNumb = Math.floor(Math.random() * maxNumb);
-    const secNumb = Math.floor(Math.random() * maxNumb);
+    const firstNumb = random(maxNumb);
+    const secNumb = random(maxNumb);
     const numbs = firstNumb > secNumb ? cons(firstNumb, secNumb) : cons(secNumb, firstNumb);
-    const operation = arr[Math.floor(Math.random() * arr.length)];
-    const ask = readlineSync.question(`Question: ${car(numbs)}${operation}${cdr(numbs)}\nYour answer: `);
+    const operation = arr[random(arr.length - 1)];
+    const answer = Number(readlineSync.question(`Question: ${car(numbs)}${operation}${cdr(numbs)}\nYour answer: `));
     const calc = (op, pair) => {
       switch (op) {
         case '+':
@@ -27,11 +27,7 @@ export default () => {
       }
     };
     const corAnswer = calc(operation, numbs);
-    if (calc(operation, numbs) === +ask) {
-      getMessage('true', ask, corAnswer, askQuestion, user);
-    } else {
-      getMessage('fail', ask, corAnswer, askQuestion, user);
-    }
+    getResult(answer, corAnswer, askQuestion, user);
     return false;
   };
   askQuestion();
