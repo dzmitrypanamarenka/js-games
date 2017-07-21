@@ -15,7 +15,9 @@
   },
   "author": "me",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "readline-sync": "*"
+  },
   "devDependencies": {
     "babel-cli": "*",
     "babel-core": "*",
@@ -24,7 +26,6 @@
     "babel-preset-stage-0": "*",
     "eslint": "*",
     "eslint-config-airbnb-base": "*",
-    "eslint-plugin-import": "*",
-    "readline-sync": "*"
+    "eslint-plugin-import": "*"
   }
 }

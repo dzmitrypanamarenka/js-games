@@ -1,5 +1,5 @@
-import hello from '../';
 import readlineSync from 'readline-sync';
+import hello from '../';
 
 export default () => {
   const head = () => {
