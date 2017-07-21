@@ -1,14 +1,10 @@
 import readlineSync from 'readline-sync';
 import { cons, car, cdr } from 'hexlet-pairs';
-import hello from '../';
+import { getHead, getUser, getMessage } from '../';
 
 export default () => {
-  const head = () => {
-    console.log('Welcome to Brain Games!\nWhat is the result of the expression?\n\n');
-    return hello();
-  };
-  const user = head();
-  let count = 0;
+  getHead('What is the result of the expression?');
+  const user = getUser();
 
   const askQuestion = () => {
     const maxNumb = 50;
@@ -31,25 +27,10 @@ export default () => {
       }
     };
     const corAnswer = calc(operation, numbs);
-    const getMessage = (msg) => {
-      if (msg === 'true') {
-        count += 1;
-        console.log('Correct!');
-        if (count === 3) {
-          console.log(`Congratulations, ${user}!`);
-          return false;
-        }
-        askQuestion();
-      } else {
-        console.log(`"${ask}" is wrong answer ;(. Correct answer was "${corAnswer}"\nLet's try again, ${user}`);
-        return false;
-      }
-      return false;
-    };
     if (calc(operation, numbs) === +ask) {
-      getMessage('true');
+      getMessage('true', ask, corAnswer, askQuestion, user);
     } else {
-      getMessage('fail');
+      getMessage('fail', ask, corAnswer, askQuestion, user);
     }
     return false;
   };
