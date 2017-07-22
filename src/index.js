@@ -10,6 +10,7 @@ const getUser = () => {
   console.log(`Hello, ${user}!\n`);
   return user;
 };
+const getAnswer = quest => readlineSync.question(`Question: ${quest}\nYour answer: `);
 const getMessage = (msg, answer, corAnswer, callback, user) => {
   if (msg === 'true') {
     count += 1;
@@ -25,7 +26,14 @@ const getMessage = (msg, answer, corAnswer, callback, user) => {
   }
   return false;
 };
-const getResult = (answer, corAnswer, callback, user) => {
+const getResult = (question, numbs, gameLogic, callback, user) => {
+  let answer = getAnswer(question);
+  const corAnswer = gameLogic(numbs);
+  if (typeof corAnswer === 'number') {
+    if (!isNaN(Number(answer))) {
+      answer = Number(answer);
+    }
+  }
   if (answer === corAnswer) {
     getMessage('true', answer, corAnswer, callback, user);
   } else {
@@ -33,4 +41,4 @@ const getResult = (answer, corAnswer, callback, user) => {
   }
 };
 
-export { random, getHead, getUser, getMessage, getResult };
+export { random, getHead, getUser, getAnswer, getMessage, getResult };
