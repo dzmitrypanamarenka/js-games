@@ -1,4 +1,3 @@
-import readlineSync from 'readline-sync';
 import { cons, car, cdr } from 'hexlet-pairs';
 import { random, getHead, getUser, getResult } from '../';
 
