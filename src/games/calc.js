@@ -6,28 +6,31 @@ export default () => {
   getHead('What is the result of the expression?');
   const user = getUser();
 
+  const gameLogic = (numbs) => {
+    const operation = car(numbs);
+    const pair = cdr(numbs);
+    switch (operation) {
+      case '+':
+        return car(pair) + cdr(pair);
+      case '-':
+        return car(pair) - cdr(pair);
+      case '*':
+        return car(pair) * cdr(pair);
+      default:
+        return false;
+    }
+  };
+
   const askQuestion = () => {
     const maxNumb = 50;
     const arr = ['+', '-', '*'];
     const firstNumb = random(maxNumb);
     const secNumb = random(maxNumb);
-    const numbs = firstNumb > secNumb ? cons(firstNumb, secNumb) : cons(secNumb, firstNumb);
     const operation = arr[random(arr.length - 1)];
-    const answer = Number(readlineSync.question(`Question: ${car(numbs)}${operation}${cdr(numbs)}\nYour answer: `));
-    const calc = (op, pair) => {
-      switch (op) {
-        case '+':
-          return car(pair) + cdr(pair);
-        case '-':
-          return car(pair) - cdr(pair);
-        case '*':
-          return car(pair) * cdr(pair);
-        default:
-          return false;
-      }
-    };
-    const corAnswer = calc(operation, numbs);
-    getResult(answer, corAnswer, askQuestion, user);
+    const numbs = cons(operation,
+      firstNumb > secNumb ? cons(firstNumb, secNumb) : cons(secNumb, firstNumb));
+    const question = `${car(cdr(numbs))}${operation}${cdr(cdr(numbs))}`;
+    getResult(question, numbs, gameLogic, askQuestion, user);
     return false;
   };
   askQuestion();
