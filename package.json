@@ -1,6 +1,6 @@
 {
   "name": "first_one",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,8 @@
   "bin": {
     "brain-even": "dist/bin/brain-even.js",
     "brain-calc": "dist/bin/brain-calc.js",
-    "brain-gcd": "dist/bin/brain-gcd.js"
+    "brain-gcd": "dist/bin/brain-gcd.js",
+    "brain-balance": "dist/bin/brain-balance.js"
   },
   "author": "me",
   "license": "ISC",

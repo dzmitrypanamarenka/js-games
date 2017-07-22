@@ -19,7 +19,7 @@ export default () => {
     const minNumb = 1;
     const maxNumb = 101;
     const firstNumb = random(maxNumb, minNumb);
-    const secNumb = random(minNumb, maxNumb);
+    const secNumb = random(maxNumb, minNumb);
     const numbs = firstNumb > secNumb ? cons(firstNumb, secNumb) : cons(secNumb, firstNumb);
     const question = `${firstNumb} ${secNumb}`;
     getResult(question, numbs, gameLogic, askQuestion, user);
