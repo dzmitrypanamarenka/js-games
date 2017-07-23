@@ -25,7 +25,6 @@ export default () => {
     const operation = arr[random(arr.length - 1)];
     const numbs = firstNumb > secNumb ? cons(firstNumb, secNumb) : cons(secNumb, firstNumb);
     const result = gameLogic(numbs, operation);
-    console.log(typeof result);
     const question = `${car(numbs)}${operation}${cdr(numbs)}`;
     return { question, result };
   };

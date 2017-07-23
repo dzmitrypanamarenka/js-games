@@ -32,7 +32,6 @@ export default () => {
     const numb = random(maxNumb, minNumb);
     const question = `${numb}`;
     const result = gameLogic(numb);
-    console.log(typeof result);
     return { question, result };
   };
   return letsPlay(headMsg, gameData);
