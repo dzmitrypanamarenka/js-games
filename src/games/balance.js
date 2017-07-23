@@ -26,13 +26,14 @@ export default () => {
     return Number(arr.join(''));
   };
 
-  const askQuestion = () => {
+  const gameData = () => {
     const minNumb = 1;
     const maxNumb = 10000;
     const numb = random(maxNumb, minNumb);
     const question = `${numb}`;
     const result = gameLogic(numb);
+    console.log(typeof result);
     return { question, result };
   };
-  return letsPlay(headMsg, askQuestion);
+  return letsPlay(headMsg, gameData);
 };
