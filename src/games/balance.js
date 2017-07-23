@@ -1,8 +1,7 @@
-import { random, getHead, getUser, getResult } from '../';
+import letsPlay, { random } from '../';
 
 export default () => {
-  getHead('Find the greatest common divisor of given numbers.');
-  const user = getUser();
+  const headMsg = 'Balance the given number.';
 
   const gameLogic = (numb) => {
     const compare = (a, b) => {
@@ -32,8 +31,8 @@ export default () => {
     const maxNumb = 10000;
     const numb = random(maxNumb, minNumb);
     const question = `${numb}`;
-    getResult(question, numb, gameLogic, askQuestion, user);
-    return false;
+    const result = gameLogic(numb);
+    return { question, result };
   };
-  askQuestion();
+  return letsPlay(headMsg, askQuestion);
 };

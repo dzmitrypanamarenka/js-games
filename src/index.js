@@ -11,7 +11,7 @@ const getUser = () => {
   return user;
 };
 const getAnswer = quest => readlineSync.question(`Question: ${quest}\nYour answer: `);
-const getMessage = (msg, answer, corAnswer, callback, user) => {
+const getMessage = (msg, answer, corAnswer, user) => {
   if (msg === 'true') {
     count += 1;
     console.log('Correct!');
@@ -19,26 +19,37 @@ const getMessage = (msg, answer, corAnswer, callback, user) => {
       console.log(`Congratulations, ${user}!`);
       return false;
     }
-    callback();
   } else {
     console.log(`"${answer}" is wrong answer ;(. Correct answer was "${corAnswer}"\nLet's try again, ${user}`);
     return false;
   }
-  return false;
+  return true;
 };
-const getResult = (question, numbs, gameLogic, callback, user) => {
-  let answer = getAnswer(question);
-  const corAnswer = gameLogic(numbs);
-  if (typeof corAnswer === 'number') {
-    if (!isNaN(Number(answer))) {
-      answer = Number(answer);
+export default (headMsg, game) => {
+  getHead(headMsg);
+  const user = getUser();
+  const getResult = () => {
+    const data = game();
+    let answer = getAnswer(data.question);
+    const corAnswer = data.result;
+    if (typeof corAnswer === 'number') {
+      if (!isNaN(Number(answer))) {
+        answer = Number(answer);
+      }
     }
-  }
-  if (answer === corAnswer) {
-    getMessage('true', answer, corAnswer, callback, user);
-  } else {
-    getMessage('fail', answer, corAnswer, callback, user);
-  }
+    if (answer === corAnswer) {
+      if (getMessage('true', answer, corAnswer, user)) {
+        getResult();
+      } else {
+        return false;
+      }
+    } else {
+      getMessage('fail', answer, corAnswer, user);
+      return false;
+    }
+    return false;
+  };
+  return getResult();
 };
 
-export { random, getHead, getUser, getAnswer, getMessage, getResult };
+export { random };

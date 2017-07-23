@@ -1,9 +1,8 @@
 import { cons, car, cdr } from 'hexlet-pairs';
-import { random, getHead, getUser, getResult } from '../';
+import letsPlay, { random } from '../';
 
 export default () => {
-  getHead('Find the greatest common divisor of given numbers.');
-  const user = getUser();
+  const headMsg = 'Find the greatest common divisor of given numbers.';
 
   const gameLogic = (numbs) => {
     let res = 1;
@@ -22,8 +21,8 @@ export default () => {
     const secNumb = random(maxNumb, minNumb);
     const numbs = firstNumb > secNumb ? cons(firstNumb, secNumb) : cons(secNumb, firstNumb);
     const question = `${firstNumb} ${secNumb}`;
-    getResult(question, numbs, gameLogic, askQuestion, user);
-    return false;
+    const result = gameLogic(numbs);
+    return { question, result };
   };
-  askQuestion();
+  return letsPlay(headMsg, askQuestion);
 };
