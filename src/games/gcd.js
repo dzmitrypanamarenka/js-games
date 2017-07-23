@@ -3,7 +3,7 @@ import letsPlay, { random } from '../';
 export default () => {
   const headMsg = 'Find the greatest common divisor of given numbers.';
 
-  const gameLogic = (a, b) => {
+  const getGcd = (a, b) => {
     let res = 1;
     for (let i = 1; i <= a; i += 1) {
       if (a % i === 0 && b % i === 0) {
@@ -19,7 +19,7 @@ export default () => {
     const firstNumb = random(maxNumb, minNumb);
     const secNumb = random(maxNumb, minNumb);
     const question = `${firstNumb} ${secNumb}`;
-    const result = gameLogic(firstNumb, secNumb);
+    const result = getGcd(firstNumb, secNumb);
     return { question, result };
   };
 
