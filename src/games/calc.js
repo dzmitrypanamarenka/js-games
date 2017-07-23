@@ -28,5 +28,6 @@ export default () => {
     const question = `${car(numbs)}${operation}${cdr(numbs)}`;
     return { question, result };
   };
+
   return letsPlay(headMsg, gameData);
 };

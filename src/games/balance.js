@@ -34,5 +34,6 @@ export default () => {
     const result = gameLogic(numb);
     return { question, result };
   };
+
   return letsPlay(headMsg, gameData);
 };
