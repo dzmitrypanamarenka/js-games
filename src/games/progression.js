@@ -3,27 +3,27 @@ import letsPlay, { random } from '../';
 export default () => {
   const headMsg = 'What number is missing in this progression?';
 
-  const gameLogic = (arr, start, step) => {
-    let res;
-    for (let i = 0; i <= arr.length; i += 1) {
-      if (arr[i] === '..') {
-        res = start + (i * step);
+  const getProgression = (index, start, step, length) => {
+    const res = [];
+    for (let i = 0; i < length; i += 1) {
+      if (i === index) {
+        res.push('..');
+      } else {
+        res.push(start + (i * step));
       }
     }
     return res;
   };
 
   const gameData = () => {
-    const step = random(50);
-    const minNumb = random(step, 1);
+    const maxNumb = 50;
     const progLength = 10;
-    const arr = [minNumb];
-    for (let i = 1; i < progLength; i += 1) {
-      arr.push(minNumb + (i * step));
-    }
-    arr[random(arr.length)] = '..';
-    const question = `${arr.join(' ')}`;
-    const result = gameLogic(arr, minNumb, step);
+    const step = random(maxNumb, 1);
+    const startNumb = random(maxNumb);
+    const missingNumbIndex = random(progLength);
+    const progression = getProgression(missingNumbIndex, startNumb, step, progLength);
+    const question = `${progression.join(' ')}`;
+    const result = startNumb + (missingNumbIndex * step);
     return { question, result };
   };
 
